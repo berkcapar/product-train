@@ -42,7 +42,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:4000/scrape')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/scrape`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
