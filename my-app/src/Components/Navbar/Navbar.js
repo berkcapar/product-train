@@ -12,7 +12,7 @@ function Navbar() {
       <div className="logo">Product Train</div>
       <nav>
         <ul>
-          <li><a href="#about">About</a></li>
+          <li><a href="#about">About Me</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
