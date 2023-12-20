@@ -12,20 +12,20 @@ app.use(cors());
 
 // Endpoint for web scraping
 app.get('/scrape', (req, res) => {
-    // Execute the Python script using the Python executable from the venv
-    exec(`${path.join(__dirname, 'venv/bin/python')} ${path.join(__dirname, 'scraper.py')}`, (error, stdout, stderr) => {
+    // Execute the Python script. On Heroku, Python environment is managed, so no need for venv path
+    exec(`python3 ${path.join(__dirname, 'scraper.py')}`, (error, stdout, stderr) => {
         console.log('stdout:', stdout);
         console.error('stderr:', stderr);
         if (error) {
             console.error('exec error:', error);
-            return res.status(500).send('Error occurred while executing the script');
+            return res.status(500).send(`Error occurred while executing the script: ${error.message}`);
         }
         try {
             const data = JSON.parse(stdout);
             res.json(data); // Send the scraped data as JSON
         } catch (parseError) {
             console.error('parse error:', parseError);
-            res.status(500).send('Error parsing script output');
+            res.status(500).send(`Error parsing script output: ${parseError.message}`);
         }
     });
 });
