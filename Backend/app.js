@@ -4,15 +4,16 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 
-// Port configuration for Heroku
+// Port configuration for local and Heroku environments
 const port = process.env.PORT || 4000;
 
-// CORS Middleware
+// CORS Middleware for handling cross-origin requests
 app.use(cors());
 
-// Scraping endpoint
+// Endpoint for web scraping
 app.get('/scrape', (req, res) => {
-    exec('python scraper.py', (error, stdout, stderr) => {
+    // Execute the Python script using the Python executable from the venv
+    exec(`${path.join(__dirname, 'venv/bin/python')} ${path.join(__dirname, 'scraper.py')}`, (error, stdout, stderr) => {
         console.log('stdout:', stdout);
         console.error('stderr:', stderr);
         if (error) {
@@ -21,22 +22,23 @@ app.get('/scrape', (req, res) => {
         }
         try {
             const data = JSON.parse(stdout);
-            res.json(data); // Send the data as JSON
+            res.json(data); // Send the scraped data as JSON
         } catch (parseError) {
+            console.error('parse error:', parseError);
             res.status(500).send('Error parsing script output');
         }
     });
 });
 
-// Serve static files from the React app
+// Serve static files from the React app build directory
 app.use(express.static(path.join(__dirname, '../my-app/build')));
 
-// The "catchall" handler: for any request that doesn't
-// match the ones above, send back React's index.html file.
+// The "catchall" handler to serve the React app's index.html for any request that isn't to the API
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../my-app/build', 'index.html'));
 });
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
