@@ -1,23 +1,24 @@
 {
     "name": "product-content",
     "version": "1.0.0",
-    "description": "Full-stack application",
+    "description": "A full-stack web application",
     "main": "Backend/app.js",
     "scripts": {
-      "start": "node Backend/app.js",
-      "heroku-postbuild": "cd my-app && npm install && npm run build",
-      "build-frontend": "cd my-app && npm run build"
+        "start": "node Backend/app.js",
+        "start-frontend": "npm --prefix my-app start",
+        "build-frontend": "npm --prefix my-app run build",
+        "heroku-postbuild": "npm run build-frontend"
     },
     "author": "Berk",
     "license": "MIT",
     "dependencies": {
-      "cors": "^2.8.5",
-      "express": "^4.18.2"
-     
+        "cors": "^2.8.5",
+        "express": "^4.18.2"
+    
     },
+
     "engines": {
-      "node": "14.x",
-      "npm": "6.x"
+        "node": "14.x",
+        "npm": "6.x"
     }
-  }
-  
+}
