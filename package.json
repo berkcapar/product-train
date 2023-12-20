@@ -7,7 +7,7 @@
         "start": "node Backend/app.js",
         "start-frontend": "npm --prefix my-app start",
         "build-frontend": "npm --prefix my-app run build",
-        "heroku-postbuild": "npm cache clean && npm run build-frontend"
+        "heroku-postbuild": "npm run build-frontend"
     },
     "author": "Berk",
     "license": "MIT",
