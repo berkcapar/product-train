@@ -1,0 +1,61 @@
+/* Cards Container */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribute space evenly */
+  max-width: 50%; /* Container takes up only 50% of the screen width */
+  margin: 0 auto; /* Center the container */
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Padding around the entire container */
+}
+
+/* Individual Card */
+.card {
+  flex: 1 1 150px; /* Shrink and grow starting from 150px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px; /* Fixed height */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px; /* Margin around each card */
+  border: 1px solid #ddd;
+}
+
+.card-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-content {
+  text-align: center;
+  padding: 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+
+.card-date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 0.9em;
+}
+
