@@ -42,7 +42,8 @@ function App() {
   };
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/scrape`)
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'; // Fallback if the environment variable isn't set
+    fetch(`${backendUrl}/api/scraper`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
