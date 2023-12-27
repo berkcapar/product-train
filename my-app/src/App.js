@@ -42,7 +42,9 @@ function App() {
   };
 
   useEffect(() => {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'; // Fallback if the environment variable isn't set
+    const backendUrl = process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:8000' 
+    : 'https://product-content.vercel.app';
     fetch(`${backendUrl}/api/scraper`)
       .then(response => {
         if (!response.ok) {
