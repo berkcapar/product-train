@@ -44,7 +44,7 @@ function App() {
   useEffect(() => {
     const backendUrl = process.env.NODE_ENV === 'development' 
     ? 'http://localhost:8000' 
-    : 'https://product-content.vercel.app';
+    : 'https://product-train.vercel.app';
     fetch(`${backendUrl}/api/scraper`)
       .then(response => {
         if (!response.ok) {
